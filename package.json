@@ -1,0 +1,24 @@
+{
+  "name": "trabalho-conclusao-disciplina-prog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RenataCamp0s/trabalho-conclusao-disciplina-prog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/RenataCamp0s/trabalho-conclusao-disciplina-prog/issues"
+  },
+  "homepage": "https://github.com/RenataCamp0s/trabalho-conclusao-disciplina-prog#readme",
+  "dependencies": {
+    "mocha": "^11.7.5"
+  }
+}
