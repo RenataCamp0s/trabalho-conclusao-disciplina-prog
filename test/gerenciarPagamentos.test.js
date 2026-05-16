@@ -21,13 +21,13 @@ describe('Classe de Servico de Pagamentos', () => {
         const servicoDePagamentos = new ServicoDePagamentos();
 
         // Act
-        servicoDePagamentos.pagar('123456', 'Empresa A', 150.00);
+        servicoDePagamentos.pagar('678910', 'Empresa B', 150.00);
         const pagamentos = servicoDePagamentos.consultarUltimoPagamento();
         const meuPagamento = pagamentos.at(-1);
 
         // Assert
-        assert.equal(meuPagamento.codigoDeBarras, '123456');
-        assert.equal(meuPagamento.empresa, 'Empresa A');
+        assert.equal(meuPagamento.codigoDeBarras, '678910');
+        assert.equal(meuPagamento.empresa, 'Empresa B');
         assert.equal(meuPagamento.valor, 150.00);
         assert.equal(meuPagamento.categoria, 'cara');
     });
@@ -36,13 +36,13 @@ describe('Classe de Servico de Pagamentos', () => {
         const servicoDePagamentos = new ServicoDePagamentos();
 
         // Act
-        servicoDePagamentos.pagar('123456', 'Empresa A', 80.00);
+        servicoDePagamentos.pagar('654321', 'Empresa C', 80.00);
         const pagamentos = servicoDePagamentos.consultarUltimoPagamento();
         const meuPagamento = pagamentos.at(-1);
 
         // Assert
-        assert.equal(meuPagamento.codigoDeBarras, '123456');
-        assert.equal(meuPagamento.empresa, 'Empresa A');
+        assert.equal(meuPagamento.codigoDeBarras, '654321');
+        assert.equal(meuPagamento.empresa, 'Empresa C');
         assert.equal(meuPagamento.valor, 80.00);
         assert.equal(meuPagamento.categoria, 'padrao');
     });
