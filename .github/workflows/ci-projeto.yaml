@@ -1,0 +1,30 @@
+# CI para conclusão de disciplina da Pos em Automação e Testes de Software
+
+name: 'CI projeto de conclusao de disciplina'
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *' # Executa diariamente à meia-noite
+  push:
+    branches:
+      - main
+
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run unit tests
+        run: npx mocha --reporter spec
