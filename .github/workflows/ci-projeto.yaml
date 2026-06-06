@@ -27,7 +27,7 @@ jobs:
         run: npm install
 
       - name: Run unit tests
-        run: npx mocha --reporter mochawesome --reporter-options reportDir=test-reports,reportFilename=report.html,html=true,json=true
+        run: mkdir -p test-reports && npx mocha --reporter mochawesome --reporter-options reportDir=test-reports,reportFilename=report.html,html=true,json=true
 
       - name: Upload test reports
         if: always()
@@ -36,12 +36,3 @@ jobs:
           name: test-reports
           path: test-reports/
           retention-days: 30
-
-      - name: Publish test report
-        if: always()
-        uses: dorny/test-reporter@v1
-        with:
-          name: Unit Tests Report
-          path: 'test-reports/report.json'
-          reporter: 'mocha-json'
-          fail-on-error: false
