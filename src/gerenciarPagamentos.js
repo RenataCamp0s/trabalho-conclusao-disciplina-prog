@@ -5,26 +5,43 @@ export default class ServicoDePagamentos {
     this.#pagamentos = [];
   }
   
-  pagar(codigoDeBarras, empresa, valor) {
+  pagar(codigoBarras, empresa, valor) {
+    // Validação de codigoBarras
+    if (typeof codigoBarras !== 'string' || codigoBarras.trim() === '') {
+      throw new Error('Código de barras deve ser uma string não-vazia');
+    }
+
+    // Validação de empresa
+    if (typeof empresa !== 'string' || empresa.trim() === '') {
+      throw new Error('Empresa deve ser uma string não-vazia');
+    }
+
+    // Validação de valor
+    if (typeof valor !== 'number' || isNaN(valor)) {
+      throw new Error('Valor deve ser um número válido');
+    }
+    if (valor <= 0) {
+      throw new Error('Valor deve ser maior que zero');
+    }
+
+    // Determinar categoria baseado no valor
+    let categoria;
     if (valor > 100) {
-      this.#pagamentos.push({
-      codigoDeBarras: codigoDeBarras,
+      categoria = 'cara';
+    } else {
+      categoria = 'padrao';
+    }
+
+    // Adicionar pagamento à lista
+    this.#pagamentos.push({
+      codigoBarras: codigoBarras,
       empresa: empresa,
       valor: valor,
-      categoria: 'cara'
-      })
-    }
-    if (valor < 100) {
-      this.#pagamentos.push({
-      codigoDeBarras: codigoDeBarras,
-      empresa: empresa,
-      valor: valor,
-      categoria: 'padrao'
-      })
-    }
+      categoria: categoria
+    });
   }
   
   consultarUltimoPagamento() {
-    return this.#pagamentos;
+    return this.#pagamentos.at(-1);
   }
 }
